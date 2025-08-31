@@ -457,14 +457,15 @@ export default function VideoMeetComponent() {
     window.location.href = "/";
   };
 
-  let openChat = () => {
-    setModal(true);
-    setNewMessages(0);
-  };
-  let closeChat = () => {
-    setModal(false);
-  };
+  // let openChat = () => {
+  //   setModal(true);
+  //   setNewMessages(0);
+  // };
+  // let closeChat = () => {
+  //   setModal(false);
+  // };
   let handleMessage = (e) => {
+    if (e.target.value == "") return;
     setMessage(e.target.value);
   };
 
@@ -537,7 +538,7 @@ export default function VideoMeetComponent() {
                 <div className={styles.chattingArea}>
                   <TextField
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    onChange={handleMessage}
                     id="outlined-basic"
                     label="Enter Your chat"
                     variant="outlined"
