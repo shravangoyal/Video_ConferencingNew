@@ -142,7 +142,11 @@ export default function Authentication() {
               )}
 
               <TextField
-                style={{ width: "350px", margin: "10px 0px 20px 25px" }}
+                style={{
+                  color: "white",
+                  width: "350px",
+                  margin: "10px 0px 20px 25px",
+                }}
                 margin="normal"
                 required
                 fullWidth
@@ -154,7 +158,10 @@ export default function Authentication() {
                 onChange={(e) => setUsername(e.target.value)}
               />
               <TextField
-                style={{ width: "350px", margin: "10px 0px 20px 25px" }}
+                style={{
+                  width: "350px",
+                  margin: "10px 0px 20px 25px",
+                }}
                 margin="normal"
                 required
                 fullWidth
