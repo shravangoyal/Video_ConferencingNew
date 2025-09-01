@@ -465,26 +465,26 @@ export default function VideoMeetComponent() {
   //   setModal(false);
   // };
   let handleMessage = (e) => {
-    if (e.target.value == "") return;
-    setMessage(e.target.value);
+    setMessage(e.target.value); // <-- Always update, no need to block empty values
   };
-
   const addMessage = (data, sender, socketIdSender) => {
+    if (!data?.trim()) return; // <-- ignore empty messages from server side too
+
     setMessages((prevMessages) => [
       ...prevMessages,
-      { sender: sender, data: data },
+      { sender: sender, data: data.trim() },
     ]);
+
     if (socketIdSender !== socketIdRef.current) {
       setNewMessages((prevNewMessages) => prevNewMessages + 1);
     }
   };
 
   let sendMessage = () => {
-    console.log(socketRef.current);
-    socketRef.current.emit("chat-message", message, username);
-    setMessage("");
+    if (!message.trim()) return; // <-- Prevent empty or whitespace-only messages
 
-    // this.setState({ message: "", sender: username })
+    socketRef.current.emit("chat-message", message.trim(), username);
+    setMessage("");
   };
 
   let connect = () => {
@@ -539,7 +539,7 @@ export default function VideoMeetComponent() {
                   <TextField
                     value={message}
                     onChange={handleMessage}
-                    id="outlined-basic"
+                    id="outlined-basic messageInput"
                     label="Enter Your chat"
                     variant="outlined"
                   />
@@ -576,12 +576,21 @@ export default function VideoMeetComponent() {
               <></>
             )}
 
-            <Badge badgeContent={newMessages} max={999} color="orange">
+            <Badge
+              style={{
+                color: "white",
+                borderRadius: "10px",
+              }}
+              badgeContent={newMessages}
+              max={999}
+              color="white"
+            >
               <IconButton
                 onClick={() => setModal(!showModal)}
                 style={{ color: "white" }}
               >
-                <ChatIcon />{" "}
+                <ChatIcon />
+                {""}
               </IconButton>
             </Badge>
           </div>
@@ -593,9 +602,13 @@ export default function VideoMeetComponent() {
             muted
           ></video>
 
-          <div className={styles.conferenceView}>
+          <div
+            className={`${styles.conferenceView} ${
+              styles[`grid${videos.length}`]
+            }`}
+          >
             {videos.map((video) => (
-              <div key={video.socketId}>
+              <div key={video.socketId} className={styles.videoTile}>
                 <video
                   data-socket={video.socketId}
                   ref={(ref) => {
@@ -604,7 +617,7 @@ export default function VideoMeetComponent() {
                     }
                   }}
                   autoPlay
-                ></video>
+                />
               </div>
             ))}
           </div>

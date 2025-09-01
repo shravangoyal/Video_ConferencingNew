@@ -10,6 +10,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AuthContext } from "../contexts/AuthContext";
 import { Snackbar } from "@mui/material";
+import "../App.css";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -52,7 +53,13 @@ export default function Authentication() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid
+        className="authImage"
+        style={{ backgroundImage: "" }}
+        container
+        component="main"
+        sx={{ height: "100vh" }}
+      >
         <CssBaseline />
         <Grid
           item
@@ -70,13 +77,17 @@ export default function Authentication() {
           }}
         />
         <Grid
-          item
-          xs={12}
-          sm={8}
-          md={5}
-          component={Paper}
-          elevation={20}
-          square
+        // item
+        // xs={12}
+        // sm={8}
+        // md={5}
+        // component={Paper}
+        // elevation={20}
+        // square
+        // sx={{
+        //   height: "0px",
+        //   width: "0px",
+        // }}
         >
           <Box
             sx={{
@@ -87,10 +98,9 @@ export default function Authentication() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <Avatar sx={{ m: 3, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
-
             <div>
               <Button
                 variant={formState === 0 ? "contained" : ""}
@@ -109,10 +119,14 @@ export default function Authentication() {
                 Sign Up
               </Button>
             </div>
-
             <Box component="form" noValidate sx={{ mt: 1 }}>
               {formState === 1 ? (
                 <TextField
+                  style={{
+                    color: "white",
+                    width: "350px",
+                    margin: "10px 0px 20px 25px",
+                  }}
                   margin="normal"
                   required
                   fullWidth
@@ -128,6 +142,7 @@ export default function Authentication() {
               )}
 
               <TextField
+                style={{ width: "350px", margin: "10px 0px 20px 25px" }}
                 margin="normal"
                 required
                 fullWidth
@@ -139,6 +154,7 @@ export default function Authentication() {
                 onChange={(e) => setUsername(e.target.value)}
               />
               <TextField
+                style={{ width: "350px", margin: "10px 0px 20px 25px" }}
                 margin="normal"
                 required
                 fullWidth
@@ -153,6 +169,7 @@ export default function Authentication() {
               <p style={{ color: "red" }}>{error}</p>
 
               <Button
+                style={{ width: "350px", margin: "10px 0px 0px 25px" }}
                 type="button"
                 fullWidth
                 variant="contained"

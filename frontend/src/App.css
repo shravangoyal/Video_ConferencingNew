@@ -6,6 +6,10 @@
   background-size: cover;
   color: white;
 }
+.authImage {
+  background: url("/background2.png");
+  background-size: cover;
+}
 @media (max-width: 800px) {
   .landingPageContainer {
     max-width: 100%;
@@ -165,4 +169,31 @@
   width: 30vw;
   height: auto;
   border-radius: 20px;
+}
+.css-17fpwt7-MuiGrid-root {
+  /* min-width: 0;
+  box-sizing: border-box; */
+  position: absolute;
+
+  left: 500px;
+  top: 100px;
+  height: 500px;
+  width: 450px;
+  /* background-color: white; */
+  /* background-color: #f0dddd33; */
+  background-color: rgba(173, 216, 230, 0.4);
+}
+.css-1y8ugea {
+  margin-top: 24px !important;
+  margin-bottom: 64px !important;
+  margin-left: 25px !important;
+  margin-right: 32px !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center !important;
 }
