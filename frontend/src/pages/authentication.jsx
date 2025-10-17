@@ -55,7 +55,7 @@ export default function Authentication() {
     <ThemeProvider theme={defaultTheme}>
       <Grid
         className="authImage"
-        style={{ backgroundImage: "" }}
+        // style={{ backgroundImage: "" }}
         container
         component="main"
         sx={{ height: "100vh" }}
