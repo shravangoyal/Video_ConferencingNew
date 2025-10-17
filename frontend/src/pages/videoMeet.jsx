@@ -34,7 +34,6 @@ export default function VideoMeetComponent() {
   let [video, setVideo] = useState([]);
 
   let [audio, setAudio] = useState();
-
   let [screen, setScreen] = useState();
 
   let [showModal, setModal] = useState(true);
@@ -45,7 +44,7 @@ export default function VideoMeetComponent() {
 
   let [message, setMessage] = useState("");
 
-  let [newMessages, setNewMessages] = useState(3);
+  let [newMessages, setNewMessages] = useState(0);
 
   let [askForUsername, setAskForUsername] = useState(true);
 
@@ -495,9 +494,40 @@ export default function VideoMeetComponent() {
   return (
     <div>
       {askForUsername === true ? (
-        <div>
-          <h2>Enter into Lobby </h2>
+        <div
+          style={{
+            padding: "40px",
+            display: "flex",
+            gap: "16px",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "10px",
+            height: "740px",
+            backgroundSize: "cover",
+            backgroundImage: "url(background.png)",
+          }}
+        >
+          <h2 style={{ color: "whitesmoke" }}>Enter into Lobby </h2>
           <TextField
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#1976d2", // Default border color
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#1565c0", // Hover border color
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#0d47a1",
+                },
+              },
+              "& .MuiInputLabel-outlined": {
+                color: "#1976d2",
+              },
+              input: {
+                color: "#ecf0f3ff",
+              },
+            }}
             id="outlined-basic"
             label="Username"
             value={username}
@@ -509,7 +539,12 @@ export default function VideoMeetComponent() {
           </Button>
 
           <div>
-            <video ref={localVideoref} autoPlay muted></video>
+            <video
+              style={{ borderRadius: "10px" }}
+              ref={localVideoref}
+              autoPlay
+              muted
+            ></video>
           </div>
         </div>
       ) : (
@@ -552,16 +587,23 @@ export default function VideoMeetComponent() {
           ) : (
             <></>
           )}
-
           <div className={styles.buttonContainers}>
-            <IconButton onClick={handleVideo} style={{ color: "white" }}>
-              {video === true ? <VideocamIcon /> : <VideocamOffIcon />}
+            <IconButton onClick={handleVideo} style={{ color: "blue" }}>
+              {video === true ? (
+                <VideocamIcon />
+              ) : (
+                <VideocamOffIcon style={{ color: "white" }} />
+              )}
             </IconButton>
             <IconButton onClick={handleEndCall} style={{ color: "red" }}>
               <CallEndIcon />
             </IconButton>
-            <IconButton onClick={handleAudio} style={{ color: "white" }}>
-              {audio === true ? <MicIcon /> : <MicOffIcon />}
+            <IconButton onClick={handleAudio} style={{ color: "blue" }}>
+              {audio === true ? (
+                <MicIcon />
+              ) : (
+                <MicOffIcon style={{ color: "white" }} />
+              )}
             </IconButton>
 
             {screenAvailable === true ? (
@@ -594,14 +636,13 @@ export default function VideoMeetComponent() {
               </IconButton>
             </Badge>
           </div>
-
+          // user local video
           <video
             className={styles.meetUserVideo}
             ref={localVideoref}
             autoPlay
             muted
           ></video>
-
           <div
             className={`${styles.conferenceView} ${
               styles[`grid${videos.length}`]
