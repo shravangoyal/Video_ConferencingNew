@@ -195,7 +195,7 @@ export default function Authentication() {
         </Grid>
       </Grid>
 
-      <Snackbar open={open} autoHideDuration={4000} message={message} />
+      <Snackbar open={open} autoHideDuration={3000} message={message} />
     </ThemeProvider>
   );
 }

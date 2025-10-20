@@ -19,7 +19,9 @@ function HomeComponent() {
   return (
     <>
       <div className="navBar">
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div
+          style={{ display: "flex", alignItems: "center", color: "#daa520" }}
+        >
           <h2>Sweet Meet</h2>
         </div>
 

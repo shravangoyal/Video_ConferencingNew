@@ -12,6 +12,7 @@ import ScreenShareIcon from "@mui/icons-material/ScreenShare";
 import StopScreenShareIcon from "@mui/icons-material/StopScreenShare";
 import ChatIcon from "@mui/icons-material/Chat";
 import server from "../environment";
+// import styles from "../styles/videoComponent2.css";
 
 const server_url = server;
 
@@ -453,7 +454,7 @@ export default function VideoMeetComponent() {
       let tracks = localVideoref.current.srcObject.getTracks();
       tracks.forEach((track) => track.stop());
     } catch (e) {}
-    window.location.href = "/";
+    window.location.href = "/home";
   };
 
   // let openChat = () => {
@@ -540,7 +541,7 @@ export default function VideoMeetComponent() {
 
           <div>
             <video
-              style={{ borderRadius: "10px" }}
+              style={{ borderRadius: "10px", border: "1px solid white" }}
               ref={localVideoref}
               autoPlay
               muted
@@ -559,7 +560,10 @@ export default function VideoMeetComponent() {
                     messages.map((item, index) => {
                       console.log(messages);
                       return (
-                        <div style={{ marginBottom: "20px" }} key={index}>
+                        <div
+                          style={{ marginBottom: "20px", marginLeft: "10px" }}
+                          key={index}
+                        >
                           <p style={{ fontWeight: "bold" }}>{item.sender}</p>
                           <p>{item.data}</p>
                         </div>
